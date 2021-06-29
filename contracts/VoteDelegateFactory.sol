@@ -40,10 +40,7 @@ contract VoteDelegateFactory {
     }
 
     function create() external returns (address voteDelegate) {
-        require(
-            !isDelegate(msg.sender),
-            "VoteDelegateFactory/sender-is-already-delegate"
-        );
+        require(!isDelegate(msg.sender), "VoteDelegateFactory/sender-is-already-delegate");
 
         voteDelegate = address(new VoteDelegate(chief, polling, msg.sender));
         delegates[msg.sender] = voteDelegate;
